@@ -1,19 +1,13 @@
 package nl.sogyo.jendenburg.orbitsim.domain;
 
-public class Planet
+public class Planet extends Body
 {
-	private double mass;
 	private double radius;
 	
 	public Planet(double mass, double radius)
 	{
-		this.mass = mass;
+		super(mass);
 		this.radius = radius;
-	}
-	
-	public double getMass()
-	{
-		return mass;
 	}
 	
 	public double getRadius()
