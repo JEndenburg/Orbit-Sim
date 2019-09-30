@@ -78,4 +78,22 @@ public class Vector3Test
 		double expectedValue = -1191.875;
 		Assertions.assertEquals(expectedValue, Vector3.dot(vectorA, vectorC), 0.0001);
 	}
+	
+	@Test
+	public void testCrossAB()
+	{
+		double[] expectedValues = {350.005, -1339.425, 10.25};
+		Vector3 obtainedVector = Vector3.cross(vectorA, vectorB);
+		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
+		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
+	}
+	
+	@Test
+	public void testCrossAC()
+	{
+		double[] expectedValues = {-387.5, 1638.1875, -70.5};
+		Vector3 obtainedVector = Vector3.cross(vectorA, vectorC);
+		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
+		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
+	}
 }
