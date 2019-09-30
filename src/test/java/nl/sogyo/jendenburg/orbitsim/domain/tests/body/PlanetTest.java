@@ -1,8 +1,9 @@
-package nl.sogyo.jendenburg.orbitsim.domain.tests;
+package nl.sogyo.jendenburg.orbitsim.domain.tests.body;
 
 import org.junit.jupiter.api.*;
 
 import nl.sogyo.jendenburg.orbitsim.domain.*;
+import nl.sogyo.jendenburg.orbitsim.domain.body.Planet;
 
 public class PlanetTest
 {
@@ -42,7 +43,6 @@ public class PlanetTest
 	public void testPlanetGravityWithMass20Radius30()
 	{
 		Planet planet = new Planet(20, 30);
-		double planetGravity = planet.getGravity();
 		Assertions.assertEquals(0.02222222222, planet.getGravity(), 0.000001);
 	}
 	
@@ -50,7 +50,6 @@ public class PlanetTest
 	public void testPlanetGravityWithMass40Radius10()
 	{
 		Planet planet = new Planet(40, 10);
-		double planetGravity = planet.getGravity();
 		Assertions.assertEquals(0.4, planet.getGravity(), 0.000001);
 	}
 }

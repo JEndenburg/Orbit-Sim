@@ -1,4 +1,4 @@
-package nl.sogyo.jendenburg.orbitsim.domain;
+package nl.sogyo.jendenburg.orbitsim.domain.body;
 
 public abstract class Body
 {
