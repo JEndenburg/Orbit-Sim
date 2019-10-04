@@ -6,7 +6,12 @@ public class Planet extends Body
 	
 	public Planet(double mass, double radius)
 	{
-		super(mass);
+		this(null, mass, radius);
+	}
+	
+	public Planet(Planet parentBody, double mass, double radius)
+	{
+		super(parentBody, mass);
 		this.radius = radius;
 	}
 	
