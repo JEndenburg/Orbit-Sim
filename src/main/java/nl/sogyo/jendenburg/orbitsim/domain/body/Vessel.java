@@ -2,11 +2,12 @@ package nl.sogyo.jendenburg.orbitsim.domain.body;
 
 import java.time.*;
 
+import nl.sogyo.jendenburg.orbitsim.domain.body.state.InitialBodyState;
+
 public class Vessel extends Body
 {
-	public Vessel(Planet parentBody, double mass)
+	public Vessel(InitialBodyState initState, double mass)
 	{
-		super(parentBody, mass);
-		this.parentBody = parentBody;
+		super(initState, mass);
 	}
 }

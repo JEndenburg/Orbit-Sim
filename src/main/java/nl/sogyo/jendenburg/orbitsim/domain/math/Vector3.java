@@ -4,6 +4,11 @@ public class Vector3
 {
 	private final double x, y, z;
 	
+	public static final Vector3 zero = new Vector3(0,0,0);
+	public static final Vector3 up = new Vector3(0,1,0);
+	public static final Vector3 right = new Vector3(1,0,0);
+	public static final Vector3 forward = new Vector3(0,0,1);
+	
 	public Vector3(double x, double y, double z)
 	{
 		this.x = x;
@@ -85,5 +90,17 @@ public class Vector3
 				y * amount,
 				z * amount
 				);
+	}
+	
+	@Override
+	public boolean equals(Object other)
+	{
+		if(other instanceof Vector3)
+		{
+			Vector3 otherV3 = (Vector3)other;
+			return x == otherV3.x && y == otherV3.y && z == otherV3.z;
+		}
+		else
+			return false;
 	}
 }

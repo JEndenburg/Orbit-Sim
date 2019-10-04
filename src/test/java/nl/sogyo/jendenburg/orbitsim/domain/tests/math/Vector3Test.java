@@ -150,4 +150,20 @@ public class Vector3Test
 		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
 		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
 	}
+	
+	@Test
+	public void testVectorsEqual()
+	{
+		Vector3 v1 = new Vector3(16, 32.0, 11.52);
+		Vector3 v2 = new Vector3(16, 32.0, 11.52);
+		Assertions.assertEquals(v1, v2);
+	}
+	
+	@Test
+	public void testVectorsDoNotEqual()
+	{
+		Vector3 v1 = new Vector3(53, 12.63, -53.0);
+		Vector3 v2 = new Vector3(-21, 12.63, -11.1);
+		Assertions.assertNotEquals(v2, v1);
+	}
 }

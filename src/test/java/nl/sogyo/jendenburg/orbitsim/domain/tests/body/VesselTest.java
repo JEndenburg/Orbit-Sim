@@ -6,6 +6,8 @@ import java.time.*;
 import nl.sogyo.jendenburg.orbitsim.domain.*;
 import nl.sogyo.jendenburg.orbitsim.domain.body.Planet;
 import nl.sogyo.jendenburg.orbitsim.domain.body.Vessel;
+import nl.sogyo.jendenburg.orbitsim.domain.body.state.InitialBodyState;
+import nl.sogyo.jendenburg.orbitsim.domain.math.Vector3;
 
 public class VesselTest
 {
@@ -14,6 +16,6 @@ public class VesselTest
 	@BeforeAll
 	public static void setup()
 	{
-		planet = new Planet(50.0, 10.0);
+		planet = new Planet(new InitialBodyState(Vector3.zero, Vector3.zero), 50.0, 10.0);
 	}
 }
