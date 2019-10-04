@@ -132,4 +132,22 @@ public class Vector3Test
 		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
 		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
 	}
+	
+	@Test
+	public void testVectorMultiplicationsATimes2_5()
+	{
+		double[] expectedValues = {18.75, 5.0, 13.125};
+		Vector3 obtainedVector = vectorA.multiply(2.5);
+		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
+		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
+	}
+	
+	@Test
+	public void testVectorMultiplicationsBTimes7_25()
+	{
+		double[] expectedValues = {-37.15625, 0.0, 1268.768125};
+		Vector3 obtainedVector = vectorB.multiply(7.25);
+		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
+		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
+	}
 }

@@ -77,4 +77,13 @@ public class Vector3
 				z - v3.z
 				);
 	}
+	
+	public Vector3 multiply(double amount)
+	{
+		return new Vector3(
+				x * amount,
+				y * amount,
+				z * amount
+				);
+	}
 }
