@@ -96,4 +96,40 @@ public class Vector3Test
 		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
 		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
 	}
+	
+	@Test
+	public void testAddAB()
+	{
+		double[] expectedValues = {2.375, 2.0, 180.2525};
+		Vector3 obtainedVector = vectorA.add(vectorB);
+		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
+		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
+	}
+	
+	@Test
+	public void testAddAC()
+	{
+		double[] expectedValues = {5.25, -8.0, -214.75};
+		Vector3 obtainedVector = vectorA.add(vectorC);
+		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
+		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
+	}
+	
+	@Test
+	public void testSubtractAB()
+	{
+		double[] expectedValues = {12.625, 2.0, -169.7525};
+		Vector3 obtainedVector = vectorA.subtract(vectorB);
+		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
+		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
+	}
+	
+	@Test
+	public void testSubtractAC()
+	{
+		double[] expectedValues = {9.75, 12.0, 225.25};
+		Vector3 obtainedVector = vectorA.subtract(vectorC);
+		double[] obtainedValues = {obtainedVector.getX(), obtainedVector.getY(), obtainedVector.getZ()};
+		Assertions.assertArrayEquals(expectedValues, obtainedValues, 0.0001);
+	}
 }

@@ -59,4 +59,22 @@ public class Vector3
 				a.x * b.y - a.y * b.x
 				);
 	}
+	
+	public Vector3 add(Vector3 v3)
+	{
+		return new Vector3(
+				x + v3.x,
+				y + v3.y,
+				z + v3.z
+				);
+	}
+	
+	public Vector3 subtract(Vector3 v3)
+	{
+		return new Vector3(
+				x - v3.x,
+				y - v3.y,
+				z - v3.z
+				);
+	}
 }
