@@ -1,14 +1,14 @@
 package nl.sogyo.jendenburg.orbitsim.domain.body;
 
-import nl.sogyo.jendenburg.orbitsim.domain.body.state.InitialBodyState;
+import nl.sogyo.jendenburg.orbitsim.domain.math.Vector3;
 
 public class Planet extends Body
 {
 	private double radius;
 	
-	public Planet(InitialBodyState initState, double mass, double radius)
+	public Planet(Vector3 position, Vector3 velocity, double mass, double radius)
 	{
-		super(initState, mass);
+		super(position, velocity, mass);
 		this.radius = radius;
 	}
 	

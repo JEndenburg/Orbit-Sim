@@ -2,19 +2,18 @@ package nl.sogyo.jendenburg.orbitsim.domain.body;
 
 import java.time.Duration;
 
-import nl.sogyo.jendenburg.orbitsim.domain.body.state.BaseBodyState;
-import nl.sogyo.jendenburg.orbitsim.domain.body.state.BodyState;
-import nl.sogyo.jendenburg.orbitsim.domain.body.state.InitialBodyState;
 import nl.sogyo.jendenburg.orbitsim.domain.math.Vector3;
 
 public abstract class Body
 {
 	protected double mass;
-	protected BaseBodyState baseState;
+	protected Vector3 position;
+	protected Vector3 velocity;
 	
-	public Body(InitialBodyState initState, double mass)
+	public Body(Vector3 position, Vector3 velocity, double mass)
 	{
-		this.baseState = initState;
+		this.position = position;
+		this.velocity = velocity;
 		this.mass = mass;
 	}
 	
@@ -23,18 +22,18 @@ public abstract class Body
 		return mass;
 	}
 	
-	public BodyState getStateAfterTime(Duration duration)
+	public Vector3 getPosition()
 	{
-		return new BodyState(
-				baseState.getPosition().add(getDisplacement(baseState.getVelocity(), duration)),
-				baseState.getVelocity()
-				);
+		return position;
 	}
 	
-	private Vector3 getDisplacement(Vector3 velocity, Duration duration)
+	public Vector3 getVelocity()
 	{
-		return velocity.multiply(
-				duration.toSeconds() / 3600.0
-				);
+		return velocity;
+	}
+	
+	public void addVelocity(Vector3 impulse)
+	{
+		velocity = velocity.add(impulse);
 	}
 }
