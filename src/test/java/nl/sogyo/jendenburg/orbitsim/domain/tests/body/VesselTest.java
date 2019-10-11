@@ -12,7 +12,7 @@ public class VesselTest
 {
 	private static Planet planet;
 	
-	@BeforeAll
+	@BeforeEach
 	public static void setup()
 	{
 		planet = new Planet(Vector3.zero, Vector3.zero, 50.0, 10.0);
