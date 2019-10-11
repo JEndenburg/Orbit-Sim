@@ -36,4 +36,9 @@ public abstract class Body
 	{
 		velocity = velocity.add(impulse);
 	}
+	
+	public void simulate()
+	{
+		position = position.add(velocity);
+	}
 }
