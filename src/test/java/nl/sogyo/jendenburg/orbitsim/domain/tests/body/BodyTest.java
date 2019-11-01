@@ -9,9 +9,15 @@ import nl.sogyo.jendenburg.orbitsim.domain.math.Vector3;
 
 public class BodyTest
 {
-	private static Body bodyA = new Planet(new Vector3(2, -1.5, 4), new Vector3(-4, 1, 0), 200.0, 15.0);
-	private static Body bodyB = new Vessel(new Vector3(-1, 0, 0), new Vector3(0, 0, 0), 0.5);
+	private static Body bodyA;
+	private static Body bodyB;
 	
+	@BeforeEach
+	public void setup()
+	{
+		bodyA = new Planet(new Vector3(2, -1.5, 4), new Vector3(-4, 1, 0), 200.0, 15.0);
+		bodyB = new Vessel(new Vector3(-1, 0, 0), new Vector3(0, 0, 0), 0.5);
+	}
 	
 	@Test
 	public void testBodyHasSpecifiedMass25()
@@ -67,6 +73,24 @@ public class BodyTest
 		Vector3 expected = new Vector3(-6, 1, -1);
 		bodyA.addVelocity(new Vector3(-2, 0, -1));
 		Vector3 obtained = bodyA.getVelocity();
+		Assertions.assertEquals(expected, obtained);
+	}
+	
+	@Test
+	public void testBodyHasMovedAfterSimulationOccuredA()
+	{
+		Vector3 expected = new Vector3(-2, -0.5, 4);
+		bodyA.simulate();
+		Vector3 obtained = bodyA.getPosition();
+		Assertions.assertEquals(expected, obtained);
+	}
+	
+	@Test
+	public void testBodyHasMovedAfterSimulationOccuredB()
+	{
+		Vector3 expected = new Vector3(-1, 0, 0);
+		bodyB.simulate();
+		Vector3 obtained = bodyB.getPosition();
 		Assertions.assertEquals(expected, obtained);
 	}
 }
