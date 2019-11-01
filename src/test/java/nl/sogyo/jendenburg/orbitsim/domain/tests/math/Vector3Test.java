@@ -9,8 +9,8 @@ public class Vector3Test
 	private static Vector3 vectorB;
 	private static Vector3 vectorC;
 	
-	@BeforeAll
-	public static void setup()
+	@BeforeEach
+	public void setup()
 	{
 		vectorA = new Vector3(7.5, 2.0, 5.25);
 		vectorB = new Vector3(-5.125, 0.0, 175.0025);
