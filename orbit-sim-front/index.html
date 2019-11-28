@@ -12,7 +12,35 @@
                 };
             ws.onopen = (e) => {
                 console.log("connected");
-                ws.send(JSON.stringify({ id: "15", thing: [ 1, 6, 9 ] }));
+
+                ws.send(JSON.stringify({
+                    type: "CreateSimulation",
+                }));
+
+                ws.send(JSON.stringify({
+                    type: "AddPlanet",
+                    planet: {
+                        position: { x: 0.0, y: 0.0, z: 0.0 },
+                        velocity: { x: 0.0, y: 0.0, z: 0.0 },
+                        mass: 12.5,
+                        radius: 3.25,
+                    },
+                }));
+
+                ws.send(JSON.stringify({
+                    type: "AddVessel",
+                    vessel: {
+                        position: { x: 1.182, y: -0.0621, z: 5.2157 },
+                        velocity: { x: -4.117, y: 0.012, z: 1.1 },
+                        mass: 12.5,
+                    },
+                }));
+
+                setInterval(() => {
+                    ws.send(JSON.stringify({
+                        type: "Update",
+                    }));
+                }, 1000);
             };
 
         </script>
