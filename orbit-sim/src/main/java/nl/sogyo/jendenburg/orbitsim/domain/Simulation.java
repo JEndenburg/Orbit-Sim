@@ -18,10 +18,14 @@ public class Simulation
 	
 	public void simulate(Duration duration)
 	{
-		for(Body b : simulatedBodies)
-			affectByGravity(b);
-		for(Body b : simulatedBodies)
-			b.simulate();
+		long seconds = duration.getSeconds();
+		while(seconds --> 0)
+		{
+			for(Body b : simulatedBodies)
+				affectByGravity(b);
+			for(Body b : simulatedBodies)
+				b.simulate();
+		}
 	}
 	
 	public List<Body> getBodies()
