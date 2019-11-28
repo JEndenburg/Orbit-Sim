@@ -40,7 +40,7 @@ public class BodyTest
 	{
 		Vector3 expected = new Vector3(2, -1.5, 4);
 		Vector3 obtained = bodyA.getPosition();
-		Assertions.assertEquals(expected, obtained);
+		Assertions.assertTrue(expected.equals(obtained));
 	}
 	
 	@Test
@@ -48,7 +48,7 @@ public class BodyTest
 	{
 		Vector3 expected = new Vector3(-1, 0, 0);
 		Vector3 obtained = bodyB.getPosition();
-		Assertions.assertEquals(expected, obtained);
+		Assertions.assertTrue(expected.equals(obtained));
 	}
 	
 	@Test
@@ -56,7 +56,7 @@ public class BodyTest
 	{
 		Vector3 expected = new Vector3(-4, 1, 0);
 		Vector3 obtained = bodyA.getVelocity();
-		Assertions.assertEquals(expected, obtained);
+		Assertions.assertTrue(expected.equals(obtained));
 	}
 	
 	@Test
@@ -64,7 +64,7 @@ public class BodyTest
 	{
 		Vector3 expected = new Vector3(0, 0, 0);
 		Vector3 obtained = bodyB.getVelocity();
-		Assertions.assertEquals(expected, obtained);
+		Assertions.assertTrue(expected.equals(obtained));
 	}
 	
 	@Test
@@ -73,16 +73,16 @@ public class BodyTest
 		Vector3 expected = new Vector3(-6, 1, -1);
 		bodyA.addVelocity(new Vector3(-2, 0, -1));
 		Vector3 obtained = bodyA.getVelocity();
-		Assertions.assertEquals(expected, obtained);
+		Assertions.assertTrue(expected.equals(obtained));
 	}
 	
 	@Test
 	public void testBodyHasMovedAfterSimulationOccuredA()
 	{
-		Vector3 expected = new Vector3(-2, -0.5, 4);
+		Vector3 expected = new Vector3(2, -1.5, 4);
 		bodyA.simulate();
 		Vector3 obtained = bodyA.getPosition();
-		Assertions.assertEquals(expected, obtained);
+		Assertions.assertTrue(expected.equals(obtained));
 	}
 	
 	@Test
@@ -91,6 +91,6 @@ public class BodyTest
 		Vector3 expected = new Vector3(-1, 0, 0);
 		bodyB.simulate();
 		Vector3 obtained = bodyB.getPosition();
-		Assertions.assertEquals(expected, obtained);
+		Assertions.assertTrue(expected.equals(obtained));
 	}
 }

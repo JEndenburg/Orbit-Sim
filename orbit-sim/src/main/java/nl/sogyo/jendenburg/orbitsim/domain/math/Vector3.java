@@ -98,7 +98,7 @@ public class Vector3
 		if(other instanceof Vector3)
 		{
 			Vector3 otherV3 = (Vector3)other;
-			return x == otherV3.x && y == otherV3.y && z == otherV3.z;
+			return Math.abs(x - otherV3.x) < 0.01 && Math.abs(y - otherV3.y) < 0.01 && Math.abs(z - otherV3.z) < 0.01;
 		}
 		else
 			return false;

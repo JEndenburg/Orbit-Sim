@@ -12,6 +12,7 @@
             {
                 position: absolute;
                 height: 90%;
+                width: 90%;
                 background-color: black;
                 top: 50%;
                 left: 50%;
@@ -36,6 +37,8 @@
                     const json = JSON.parse(e.data);
                     if(json.error === undefined)
                     {
+                        canvas.width = document.body.clientWidth * 0.9;
+                        canvas.height = document.body.clientHeight * 0.9;
                         context.clearRect(0, 0, canvas.width, canvas.height);
                         context.strokeStyle = "#FFFFFF";
                         for(let body of json.simulation.bodies)
