@@ -1,0 +1,13 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>orbit-sim-full</artifactId>
+    <groupId>nl.sogyo.jendenburg.orbitsim</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>orbit-sim</module>
+        <module>orbit-sim-web</module>
+    </modules>
+</project>
