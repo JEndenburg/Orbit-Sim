@@ -27,8 +27,11 @@ public class ConnectionHandler implements Runnable
 		{
 			performHandshake();
 			InputStream in = client.getInputStream();
+			OutputStream out = client.getOutputStream();
 			while(client.isConnected())
-				receiver.receiveMessage(decodeMessage(in));
+			{
+				out.write(encodeMessage(receiver.respondToMessage(decodeMessage(in))));
+			}
 		}
 		catch(IOException ioEx)
 		{
@@ -106,6 +109,41 @@ public class ConnectionHandler implements Runnable
 		return length;
 	}
 	
+	private byte[] encodeMessage(String message)
+	{
+		int actualLength;
+		int length = actualLength = message.length();
+		byte[] response;
+		int maskStartIndex;
+		if(message.length() > 125)
+		{
+			length = 126;
+			response = new byte[4 + 4 + actualLength];
+			response[1] = (byte)(length + 128);
+			response[2] = (byte)(actualLength >> 8);
+			response[3] = (byte)actualLength;
+			maskStartIndex = 4;
+		}
+		else
+		{
+			response = new byte[2 + 4 + actualLength];
+			response[1] = (byte)(actualLength + 128);
+			maskStartIndex = 2;
+		}
+		
+		response[0] = OpCode.Text.getEncodedValue();
+		int messageStartIndex = maskStartIndex + 4;
+		
+		byte[] mask = new byte[4];
+		for(int i = 0; i < 4; i++)
+			mask[i] = response[maskStartIndex + i] = (byte)(Math.random() * 255 - 128);
+		
+		for(int i = 0; i < actualLength; i++)
+			response[messageStartIndex + i] = (byte)(message.charAt(i) ^ mask[i & 0x3]);
+		
+		return response;
+	}
+	
 	static enum OpCode
 	{
 		Text((byte)1),
@@ -116,6 +154,11 @@ public class ConnectionHandler implements Runnable
 		private OpCode(byte val)
 		{
 			this.val = val;
+		}
+		
+		public byte getEncodedValue()
+		{
+			return (byte)(this.val + 128);
 		}
 		
 		public static OpCode fromDecodedValue(int value)

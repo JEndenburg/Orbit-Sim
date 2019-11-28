@@ -1,6 +1,9 @@
 package nl.sogyo.jendenburg.orbitsim.web;
 
 import java.net.*;
+
+import nl.sogyo.jendenburg.orbitsim.web.webinterface.OrbitSimInterface;
+
 import java.io.*;
 
 public class WebAPI
@@ -21,7 +24,7 @@ public class WebAPI
 				try
 				{
 					Socket client = server.accept();
-					new Thread(new ConnectionHandler(client, msg -> System.out.println(msg) )).start();
+					new Thread(new ConnectionHandler(client, new OrbitSimInterface())).start();
 				}
 				catch(IOException ioEx)
 				{
