@@ -105,6 +105,7 @@
                 setInterval(() => {
                     ws.send(JSON.stringify({
                         type: "Update",
+                        time: 60,
                     }));
                 }, 16);
             };

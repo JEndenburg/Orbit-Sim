@@ -55,7 +55,7 @@ public class OrbitSimInterface implements IWebsocketMessageReceiver
 		switch(messageType)
 		{
 		case CreateSimulation: executeCreateSimulation(); break;
-		case Update: executeUpdate(); break;
+		case Update: executeUpdate(jsonObject); break;
 		case AddPlanet: executeAddPlanet((JSONObject)jsonObject.get("planet")); break;
 		case AddVessel: executeAddVessel((JSONObject)jsonObject.get("vessel")); break;
 		default: throw new InvalidMessageException("type was not recognized!");
@@ -67,12 +67,17 @@ public class OrbitSimInterface implements IWebsocketMessageReceiver
 		simulation = new Simulation();
 	}
 	
-	private void executeUpdate() throws InvalidMessageException
+	private void executeUpdate(JSONObject jsonObject) throws InvalidMessageException
 	{
 		if(simulation == null)
 			throw new InvalidMessageException("Can't add objects without a simulation!");
 		
-		simulation.simulate(Duration.ofSeconds(1));
+		long secondsToSimulate = ((Number)jsonObject.getOrDefault("time", 1L)).longValue();
+		
+		if(secondsToSimulate < 1 || secondsToSimulate > 5184000)
+			secondsToSimulate = 1;
+		
+		simulation.simulate(Duration.ofSeconds(secondsToSimulate));
 	}
 	
 	private void executeAddPlanet(JSONObject jsonObject) throws InvalidMessageException

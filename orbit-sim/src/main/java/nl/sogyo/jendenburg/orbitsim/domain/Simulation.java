@@ -47,6 +47,6 @@ public class Simulation
 		Vector3 directionAndDistance = affector.getPosition().subtract(affectee.getPosition());
 		double affectorGravity = affector.getMass() / (directionAndDistance.getMagnitude());
 		Vector3 gravityVector = directionAndDistance.normalize().multiply(affectorGravity);
-		affectee.addVelocity(gravityVector);
+		affectee.addVelocity(gravityVector.multiply(0.001));
 	}
 }

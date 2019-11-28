@@ -39,6 +39,6 @@ public abstract class Body
 	
 	public void simulate()
 	{
-		position = position.add(velocity);
+		position = position.add(velocity.multiply(0.001));
 	}
 }
