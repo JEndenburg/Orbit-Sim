@@ -21,7 +21,7 @@ public class WebAPI
 				try
 				{
 					Socket client = server.accept();
-					new Thread(new ConnectionHandler(client)).start();
+					new Thread(new ConnectionHandler(client, msg -> System.out.println(msg) )).start();
 				}
 				catch(IOException ioEx)
 				{
