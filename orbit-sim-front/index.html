@@ -1,119 +1,12 @@
 <HTML>
     <head>
-        <title>Orbit Simulator</title>
-        <style>
-            body
-            {
-                margin: 0;
-                background-color: black;
-            }
 
-            canvas
-            {
-                position: absolute;
-                height: 90%;
-                width: 90%;
-                background-color: black;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                border-style: groove;
-                border-color: gray;
-            }
-        </style>
+        <script src="elm.js"></script>
+
     </head>
     <body>
-        <canvas width="512" height="512">
-
-        </canvas>
-
         <script>
-
-            const canvas = document.querySelector("canvas");
-            const context = canvas.getContext("2d");
-        
-            const ws = new WebSocket("ws://localhost:1337/");
-            ws.onmessage = (e) => {
-                    const json = JSON.parse(e.data);
-                    if(json.error === undefined)
-                    {
-                        canvas.width = document.body.clientWidth * 0.9;
-                        canvas.height = document.body.clientHeight * 0.9;
-                        context.clearRect(0, 0, canvas.width, canvas.height);
-                        context.strokeStyle = "#FFFFFF";
-                        for(let body of json.simulation.bodies)
-                        {
-                            context.beginPath();
-                            context.arc(body.position.x * 4 + (canvas.width / 2), body.position.y * 4 + (canvas.height / 2), 4, 0, 2 * Math.PI);
-                            context.stroke();
-                        }
-                    }
-                };
-            ws.onopen = (e) => {
-                console.log("connected");
-
-                ws.send(JSON.stringify({
-                    type: "CreateSimulation",
-                }));
-
-                ws.send(JSON.stringify({
-                    type: "AddPlanet",
-                    planet: {
-                        position: { x: 0.0, y: 0.0, z: 0.0 },
-                        velocity: { x: 0.0, y: -0.005, z: 0.0 },
-                        mass: 54.5,
-                        radius: 3.25,
-                    },
-                }));
-
-                ws.send(JSON.stringify({
-                    type: "AddPlanet",
-                    planet: {
-                        position: { x: 30.0, y: 0.0, z: 0.0 },
-                        velocity: { x: 0.0, y: 5.1, z: 0.0 },
-                        mass: 0.15,
-                        radius: 1.25,
-                    },
-                }));
-
-                ws.send(JSON.stringify({
-                    type: "AddPlanet",
-                    planet: {
-                        position: { x: -40.0, y: 0.0, z: 0.0 },
-                        velocity: { x: 0.0, y: -6.4157, z: 0.024 },
-                        mass: 0.15,
-                        radius: 1.25,
-                    },
-                }));
-
-                ws.send(JSON.stringify({
-                    type: "AddPlanet",
-                    planet: {
-                        position: { x: 0.0, y: 60.0, z: 0.0 },
-                        velocity: { x: -7.52, y: 1.1, z: 0.0 },
-                        mass: 0.15,
-                        radius: 1.25,
-                    },
-                }));
-
-                // ws.send(JSON.stringify({
-                //     type: "AddVessel",
-                //     vessel: {
-                //         position: { x: 36.127, y: -0.0621, z: -0.015 },
-                //         velocity: { x: 1.312, y: -2.128, z: -0.002 },
-                //         mass: 12.5,
-                //     },
-                // }));
-
-                setInterval(() => {
-                    ws.send(JSON.stringify({
-                        type: "Update",
-                        time: 60,
-                    }));
-                }, 16);
-            };
-
+            Elm.Main.init();
         </script>
-
     </body>
 </HTML>
