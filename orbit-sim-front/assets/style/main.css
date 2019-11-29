@@ -62,3 +62,34 @@ main
     height: calc(93% - var(--header-height));
     margin: 20px;
 }
+
+#loading-text
+{
+    background-color: rgba(128, 128, 128, 0.5);
+    padding: 8px;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#loading-wheel
+{
+    position: absolute;
+    background-image: url("../img/loading.png");
+    background-size: cover;
+    padding-top: 25%;
+    width: 25%;
+
+    top: 50%;
+    left: 50%;
+    animation: load-turn 3s infinite linear;
+    opacity: 0.5;
+}
+
+@keyframes load-turn
+{
+    from { transform: translate(-50%, -50%) rotateZ(0deg); }
+    to { transform: translate(-50%, -50%) rotateZ(360deg); }
+}

@@ -79,4 +79,6 @@ viewMain model =
 
 viewConnecting : List (Html Msg)
 viewConnecting = 
-    []
+    [   div [id "loading-wheel"] []
+    ,   div [id "loading-text"] [text "Connecting to server..."]
+    ]
