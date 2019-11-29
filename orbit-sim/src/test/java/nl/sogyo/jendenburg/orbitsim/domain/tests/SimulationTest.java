@@ -45,8 +45,8 @@ public class SimulationTest
 	@Test
 	public void testPlanetPositionAfter1SecondSimulation()
 	{
-		sim.simulate(Duration.ofSeconds(1));
-		Vector3 expected = new Vector3(0, 0, 1.0/3.0);
+		sim.simulate(Duration.ofSeconds(1350));
+		Vector3 expected = new Vector3(0.01, 0, 0.31);
 		Vector3 obtained = planet.getPosition();
 		Assertions.assertEquals(expected, obtained);
 	}
