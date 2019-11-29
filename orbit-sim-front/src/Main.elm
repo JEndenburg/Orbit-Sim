@@ -1,4 +1,4 @@
-module Main exposing(..)
+port module Main exposing(..)
 
 import Browser
 import Html exposing (Html, main_, header, footer, div, span, text)
@@ -11,7 +11,7 @@ type Model
     | Connected (List SimulationElement)
 
 type Msg
-    = None
+    = OnConnected ()
 
 type SimulationElement
     = Planet SimulationElementData PlanetData
@@ -26,6 +26,11 @@ type alias SimulationElementData =
 type alias PlanetData = 
     {   radius : Float
     }
+
+
+port receiveConnectedEvent : (() -> msg) -> Sub msg
+
+
 
 main = Browser.document 
     {   init = init
@@ -48,11 +53,15 @@ view model =
     }
 
 update : Msg -> Model -> (Model, Cmd Msg)
-update message model = Debug.todo "Implement update"
+update message model = 
+    case message of
+        OnConnected _ -> (Connected [], Cmd.none)
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    Sub.batch
+    [   receiveConnectedEvent OnConnected
+    ]
 
 
 
