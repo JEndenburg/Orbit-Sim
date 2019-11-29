@@ -1,7 +1,7 @@
 module Main exposing(..)
 
 import Browser
-import Html exposing (Html, main_, header, footer, div)
+import Html exposing (Html, main_, header, footer, div, span, text)
 import Html.Attributes exposing (id, class)
 import Math.Vector3 as Vec3 exposing (Vec3, vec3)
 
@@ -58,11 +58,15 @@ subscriptions model =
 
 viewHeader : Html Msg
 viewHeader = 
-    header [] []
+    header [] 
+    [   span [id "page-title"] [text "Orbit Simulator"]
+    ]
 
 viewFooter : Html Msg
 viewFooter = 
-    footer [] []
+    footer []
+    [   span [id "page-footer"] [text "footer text here"]
+    ]
 
 viewMain : Model -> Html Msg
 viewMain model = 
