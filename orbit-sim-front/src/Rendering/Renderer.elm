@@ -16,8 +16,8 @@ type alias Uniforms =
     }
 
 
-renderCube : (Vec3, Vec3) -> WebGL.Entity
-renderCube transforms = WebGL.entity vertexShader fragmentShader cubeMesh (uniforms transforms)
+renderCube : (Vec3, Vec3) -> Vec3 -> WebGL.Entity
+renderCube transforms color = WebGL.entity vertexShader fragmentShader (cubeMesh color) (uniforms transforms)
 
 
 uniforms : (Vec3, Vec3) -> Uniforms
@@ -36,8 +36,8 @@ uniforms (position, rotation) =
                 Mat4.translate position (Mat4.makeLookAt (vec3 0 0 5) (vec3 0 0 0) (vec3 0 1 0))
         }
 
-cubeMesh : WebGL.Mesh Vertex
-cubeMesh = 
+cubeMesh : Vec3 -> WebGL.Mesh Vertex
+cubeMesh color = 
     let
         rft = vec3  1  1  1
         lft = vec3 -1  1  1
@@ -49,12 +49,12 @@ cubeMesh =
         lbb = vec3 -1 -1 -1
     in
         WebGL.triangles <| List.concat
-        [   face (vec3 255 255 255) rft rfb rbb rbt
-        ,   face (vec3 255 255 255) rft rfb lfb lft
-        ,   face (vec3 255 255 255) rft lft lbt rbt
-        ,   face (vec3 255 255 255) rfb lfb lbb rbb
-        ,   face (vec3 255 255 255) lft lfb lbb lbt
-        ,   face (vec3 255 255 255) rbt rbb lbb lbt
+        [   face color rft rfb rbb rbt
+        ,   face color rft rfb lfb lft
+        ,   face color rft lft lbt rbt
+        ,   face color rfb lfb lbb rbb
+        ,   face color lft lfb lbb lbt
+        ,   face color rbt rbb lbb lbt
         ]
 
 face : Vec3 -> Vec3 -> Vec3 -> Vec3 -> Vec3 -> List ( Vertex, Vertex, Vertex )

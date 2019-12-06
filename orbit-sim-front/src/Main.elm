@@ -102,6 +102,6 @@ viewConnected simulationElements =
         [   width 500
         ,   height 500
         ]
-        [   Renderer.renderCube (vec3 1 0 0, vec3 25 15 54)
+        [   Renderer.renderCube (vec3 1 0 0, vec3 25 15 54) (vec3 0.75 1.0 0.225)
         ]
     ]
